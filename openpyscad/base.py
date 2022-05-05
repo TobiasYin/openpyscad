@@ -4,6 +4,7 @@ from __future__ import absolute_import
 # Python 2 and 3:
 from six import with_metaclass
 import os
+from collections import Iterable
 
 
 from .modifiers import ModifierMixin
@@ -143,7 +144,10 @@ class _BaseObject(with_metaclass(MetaObject, ModifierMixin, object)):
                     content = content + '"'
                 return(content)
             else:
-                return(getattr(self, x))
+                val = getattr(self, x)
+                if isinstance(val, Iterable) and not isinstance(val, str):
+                    val = [i for i in val]
+                return val
 
         args = ''
         # no-keyword args
