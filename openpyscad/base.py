@@ -55,7 +55,7 @@ class MetaObject(type):
         'import': ('import', ('file', 'convexity'), False),
         'surface': ('surface', ('file', 'center', 'invert', 'convexity'), False),
         'polyhedron': ('polyhedron',
-                       ('points', 'triangles', 'faces', 'convexity'),
+                       ('points', 'faces', 'convexity'),
                        False)
     }
 
