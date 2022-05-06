@@ -145,9 +145,11 @@ class _BaseObject(with_metaclass(MetaObject, ModifierMixin, object)):
                 return(content)
             else:
                 val = getattr(self, x)
-                if isinstance(val, Iterable) and not isinstance(val, str):
-                    val = [i for i in val]
-                return val
+                def uwrap_iter(val):
+                    if isinstance(val, Iterable) and not isinstance(val, str):
+                        val = [uwrap_iter(i) for i in val]
+                    return val
+                return uwrap_iter(val)
 
         args = ''
         # no-keyword args
