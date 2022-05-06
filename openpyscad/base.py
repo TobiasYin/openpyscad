@@ -4,8 +4,10 @@ from __future__ import absolute_import
 # Python 2 and 3:
 from six import with_metaclass
 import os
-from collections import Iterable
-
+try:
+    from collections.abc import Iterable
+except ImportError:
+    from collections import Iterable
 
 from .modifiers import ModifierMixin
 
